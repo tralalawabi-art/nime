@@ -1,0 +1,8 @@
+{
+  "name": "Remix: shinime",
+  "description": "Imported from GitHub: tralalawabi-art/shinime",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile document",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "The unique user ID" },
+        "email": { "type": "string", "description": "The user email" },
+        "displayName": { "type": "string", "description": "The user display name" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of profile creation" }
+      },
+      "required": ["uid", "email", "createdAt"]
+    },
+    "Bookmark": {
+      "title": "Bookmark",
+      "description": "User's bookmarked anime",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The user ID of the owner" },
+        "animeSlug": { "type": "string", "description": "The slug of the anime" },
+        "title": { "type": "string", "description": "The title of the anime" },
+        "poster": { "type": "string", "description": "The URL of the poster image" },
+        "rating": { "type": "string", "description": "The rating of the anime" },
+        "addedAt": { "type": "string", "format": "date-time", "description": "Timestamp when added" }
+      },
+      "required": ["userId", "animeSlug", "title", "addedAt"]
+    },
+    "History": {
+      "title": "History",
+      "description": "Watch history entry for an episode",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "The user ID of the owner" },
+        "animeSlug": { "type": "string", "description": "The slug of the anime" },
+        "animeTitle": { "type": "string", "description": "The title of the anime" },
+        "episodeSlug": { "type": "string", "description": "The slug of the episode" },
+        "episodeTitle": { "type": "string", "description": "The title of the episode" },
+        "poster": { "type": "string", "description": "The URL of the poster image" },
+        "watchedAt": { "type": "string", "format": "date-time", "description": "Timestamp when watched" }
+      },
+      "required": ["userId", "animeSlug", "animeTitle", "episodeSlug", "episodeTitle", "watchedAt"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "Episode comment written by a user",
+      "type": "object",
+      "properties": {
+        "episodeSlug": { "type": "string", "description": "The slug of the episode where the comment belongs" },
+        "userId": { "type": "string", "description": "The user ID of the author" },
+        "userDisplayName": { "type": "string", "description": "The display name of the author" },
+        "text": { "type": "string", "description": "The body of the comment" },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Timestamp of creation" }
+      },
+      "required": ["episodeSlug", "userId", "userDisplayName", "text", "createdAt"]
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "Collection of user profiles"
+    },
+    "bookmarks/{bookmarkId}": {
+      "schema": "Bookmark",
+      "description": "Collection of user bookmarks"
+    },
+    "history/{historyId}": {
+      "schema": "History",
+      "description": "Collection of user watch histories"
+    },
+    "comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Collection of public episode comments"
+    }
+  }
+}
